@@ -48,12 +48,10 @@ public class CameraController : MonoBehaviour
         // Allows for scrolling to zoom in and our on the planet.
         targetFOV -= Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
         targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
-
     }
 
     void LateUpdate()
     {
-        //cam.fieldOfView = Mathf.Clamp(Mathf.SmoothDamp(cam.fieldOfView, targetFOV, ref velocity, 0.2f), minFOV, maxFOV);
         cam.fieldOfView = Mathf.SmoothDamp(cam.fieldOfView, targetFOV, ref velocity, zoomTime);
         //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
     }
