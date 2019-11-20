@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
         }
 
+        
         // Set the direction depending on whether the player is clicking or not.
         Vector3 direction = Input.GetMouseButton(0) ?
             (previousPosition - cam.ScreenToViewportPoint(Input.mousePosition)) * 180 :
@@ -43,6 +44,19 @@ public class CameraController : MonoBehaviour
         cam.transform.Rotate(Vector3.up, -direction.x, Space.World);
         cam.transform.Translate(Vector3.forward * depth);
         previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+        
+
+        /*
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 direction = previousPosition - cam.ScreenToViewportPoint(Input.mousePosition);
+            cam.transform.position = target.position;
+            cam.transform.Rotate(Vector3.right, direction.y * 180);
+            cam.transform.Rotate(Vector3.up, -direction.x * 180, Space.World);
+            cam.transform.Translate(Vector3.forward * depth);
+            previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+        }
+        */
 
 
         // Allows for scrolling to zoom in and our on the planet.
