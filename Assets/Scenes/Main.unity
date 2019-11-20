@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 963194227}
   target: {fileID: 5006512735315169457}
-  speed: 20
+  speed: 100
   minimumZoom: 15
   maximumZoom: 0
 --- !u!4 &132158672
