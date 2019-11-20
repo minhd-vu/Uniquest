@@ -7,33 +7,57 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private Transform target;
     [SerializeField] private float speed;
-    [SerializeField] private float minimumZoom;
-    [SerializeField] private float maximumZoom;
+    [SerializeField] private float minFOV;
+    [SerializeField] private float maxFOV;
+    [SerializeField] private float zoomSensitivity;
+    [SerializeField] private float zoomSpeed;
 
     private Vector3 previousPosition;
-    private float currentZoom;
+    private float depth;
+    private float velocity;
+    private float targetFOV;
+
+    void Start()
+    {
+        targetFOV = cam.fieldOfView;
+        depth = cam.transform.position.z;
+        velocity = 0f;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //cam.transform.position = target.position;
-        //cam.transform.Rotate(Vector3.right, Input.GetAxisRaw("Vertical") * speed * Time.deltaTime);
-        //cam.transform.Rotate(Vector3.up, -Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime, Space.World);
-        //cam.transform.Translate(Vector3.back * minimumZoom);
-
         if (Input.GetMouseButtonDown(0))
         {
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
         }
 
+        // Set the direction depending on whether the player is clicking or not.
+        Vector3 direction = Input.GetMouseButton(0) ?
+            (previousPosition - cam.ScreenToViewportPoint(Input.mousePosition)) * 180 :
+            new Vector3(Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime, Input.GetAxisRaw("Vertical") * speed * Time.deltaTime, 0);
 
-        Vector3 direction = Input.GetMouseButton(0) ? (previousPosition - cam.ScreenToViewportPoint(Input.mousePosition)) * 180 : new Vector3(Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime, Input.GetAxisRaw("Vertical") * speed * Time.deltaTime, 0);
-
+        // Rotate the camera around the planet.
         cam.transform.position = target.position;
         cam.transform.Rotate(Vector3.right, direction.y);
         cam.transform.Rotate(Vector3.up, -direction.x, Space.World);
-        cam.transform.Translate(Vector3.back * minimumZoom);
-
+        cam.transform.Translate(Vector3.forward * depth);
         previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+
+
+        // Allows for scrolling to zoom in and our on the planet.
+        targetFOV -= Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
+        //targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
+        //currentFOV = Mathf.Clamp(currentFOV, minFOV, maxFOV);
+        //cam.fieldOfView = currentFOV;
+        //cam.fieldOfView = Mathf.SmoothStep(cam.fieldOfView, currentFOV, Time.deltaTime);
+        //cam.fieldOfView -= Mathf.SmoothDamp(0, cam.fieldOfView - currentFOV, ref velo, 1f);
+
+    }
+
+    void LateUpdate()
+    {
+        //cam.fieldOfView = Mathf.Clamp(Mathf.SmoothDamp(cam.fieldOfView, targetFOV, ref velocity, 1f), minFOV, maxFOV);
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
     }
 }
