@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minFOV;
     [SerializeField] private float maxFOV;
     [SerializeField] private float zoomSensitivity;
-    [SerializeField] private float zoomSpeed;
+    [SerializeField] private float zoomTime;
 
     private Vector3 previousPosition;
     private float depth;
@@ -47,17 +47,14 @@ public class CameraController : MonoBehaviour
 
         // Allows for scrolling to zoom in and our on the planet.
         targetFOV -= Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
-        //targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
-        //currentFOV = Mathf.Clamp(currentFOV, minFOV, maxFOV);
-        //cam.fieldOfView = currentFOV;
-        //cam.fieldOfView = Mathf.SmoothStep(cam.fieldOfView, currentFOV, Time.deltaTime);
-        //cam.fieldOfView -= Mathf.SmoothDamp(0, cam.fieldOfView - currentFOV, ref velo, 1f);
+        targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
 
     }
 
     void LateUpdate()
     {
-        //cam.fieldOfView = Mathf.Clamp(Mathf.SmoothDamp(cam.fieldOfView, targetFOV, ref velocity, 1f), minFOV, maxFOV);
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+        //cam.fieldOfView = Mathf.Clamp(Mathf.SmoothDamp(cam.fieldOfView, targetFOV, ref velocity, 0.2f), minFOV, maxFOV);
+        cam.fieldOfView = Mathf.SmoothDamp(cam.fieldOfView, targetFOV, ref velocity, zoomTime);
+        //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
     }
 }

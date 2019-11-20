@@ -154,8 +154,8 @@ MonoBehaviour:
   speed: 100
   minFOV: 30
   maxFOV: 90
-  zoomSensitivity: 15
-  zoomSpeed: 5
+  zoomSensitivity: 30
+  zoomTime: 0.2
 --- !u!4 &132158672
 Transform:
   m_ObjectHideFlags: 0
