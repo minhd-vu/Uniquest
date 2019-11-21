@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.46936983, g: 0.5211794, b: 0.6686031, a: 1}
+  m_IndirectSpecularColor: {r: 0.21733543, g: 0.22553217, b: 0.26924685, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -261,7 +261,7 @@ Skybox:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: aa613d5b50c38b54480bff12d0f545b5, type: 2}
 --- !u!1001 &3795570540098761235
 PrefabInstance:
