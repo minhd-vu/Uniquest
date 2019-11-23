@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Brightness: 0.5
+    - _Brightness: 0.3
     - _CLAMPOUT: 0
     - _CamScroll: 0
     - _Darkmatter: 555
