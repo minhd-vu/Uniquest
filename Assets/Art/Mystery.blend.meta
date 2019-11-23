@@ -1,8 +1,83 @@
 fileFormatVersion: 2
-guid: a06bb255246508c44842c5d6a74cbd4c
+guid: 8010d59b85ea9564e92b5a030e24338c
 ModelImporter:
   serializedVersion: 26
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4679875762441484371
+    second: Body|BezierCurve.003Action
+  - first:
+      74: -1069211998426705584
+    second: Body|BezierCurveAction
+  - first:
+      74: 6347736703100179788
+    second: Body|Cylinder.012Action
+  - first:
+      74: -5551098821158764661
+    second: Body|CylinderAction
+  - first:
+      74: 3834998851236064535
+    second: Body|PlaneAction
+  - first:
+      74: 5666740170209705693
+    second: Cloth|BezierCurve.003Action
+  - first:
+      74: -5242892903188931427
+    second: Cloth|BezierCurveAction
+  - first:
+      74: 3857815695726761263
+    second: Cloth|Cylinder.012Action
+  - first:
+      74: -2623571803698650220
+    second: Cloth|CylinderAction
+  - first:
+      74: 4113223263750511002
+    second: Cloth|PlaneAction
+  - first:
+      74: -2024973079475677685
+    second: Post|BezierCurve.003Action
+  - first:
+      74: -5072574431742181705
+    second: Post|BezierCurveAction
+  - first:
+      74: -2208499638196687551
+    second: Post|Cylinder.012Action
+  - first:
+      74: -5077616406679754863
+    second: Post|CylinderAction
+  - first:
+      74: 4010549616880100013
+    second: Post|PlaneAction
+  - first:
+      74: -2861577041785079780
+    second: Rope_Body|BezierCurve.003Action
+  - first:
+      74: 1516521972261635806
+    second: Rope_Body|BezierCurveAction
+  - first:
+      74: 1229421139802393462
+    second: Rope_Body|Cylinder.012Action
+  - first:
+      74: 7466218307066335220
+    second: Rope_Body|CylinderAction
+  - first:
+      74: -4987846345496812611
+    second: Rope_Body|PlaneAction
+  - first:
+      74: -7140363508735128560
+    second: Rope_Post|BezierCurve.003Action
+  - first:
+      74: -3929528515627464512
+    second: Rope_Post|BezierCurveAction
+  - first:
+      74: -3408449497918832324
+    second: Rope_Post|Cylinder.012Action
+  - first:
+      74: -4760090066165157626
+    second: Rope_Post|CylinderAction
+  - first:
+      74: 2886999039052961403
+    second: Rope_Post|PlaneAction
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -87,7 +162,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
