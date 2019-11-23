@@ -1,5 +1,6 @@
 # Uniquest
 Game based on Uniquest game pitch for HNRS 122.
 
-Play it here:
-http://mason.gmu.edu/~mvu21/
+Made in Unity, some assets made in Blender.
+
+Play it here: http://mason.gmu.edu/~mvu21/
