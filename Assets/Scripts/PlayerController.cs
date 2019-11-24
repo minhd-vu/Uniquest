@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Vector3 moveTarget;
 
-    private LayerMask groundMask;
+    public LayerMask groundMask;
     private bool onGround;
 
     // Start is called before the first frame update
@@ -38,9 +38,9 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(rb.transform.position, -rb.transform.up);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 1.1f, groundMask))
+        if (Physics.Raycast(ray, out hit, .3f, groundMask))
         {
-
+            onGround = true;
         }
     }
 

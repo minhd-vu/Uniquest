@@ -695,7 +695,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   cam: {fileID: 963194228}
-  jumpForce: 220
+  jumpForce: 150
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &1909914240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,6 +967,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279884026140050277, guid: 05c3c0b379d5cf7448caf80f5c696630,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05c3c0b379d5cf7448caf80f5c696630, type: 3}
