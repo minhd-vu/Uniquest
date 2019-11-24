@@ -241,7 +241,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 963194227}
-  player: {fileID: 1909914238}
   target: {fileID: 5006512736525069816}
   speed: 5
   minFOV: 30
@@ -857,6 +856,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Intensity
       value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279884026140050277, guid: 05c3c0b379d5cf7448caf80f5c696630,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05c3c0b379d5cf7448caf80f5c696630, type: 3}
