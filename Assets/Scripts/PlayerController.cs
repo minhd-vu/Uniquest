@@ -5,11 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
-    public Transform cam;
     public float jumpForce;
     public GameObject tree;
-    public FauxGravityAttractor attractor;
 
+    private FauxGravityBody body;
     private Vector3 moveDirection;
     private Rigidbody rb;
     private Vector3 velocity;
@@ -21,6 +20,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        body = GetComponent<FauxGravityBody>();
         rb = GetComponent<Rigidbody>();
         onGround = true;
     }
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             GameObject obj = Instantiate(tree, rb.position + rb.transform.up * 2f, rb.rotation);
-            obj.GetComponent<FauxGravityBody>().attractor = attractor;
+            obj.GetComponent<FauxGravityBody>().attractor = body.attractor;
         }
     }
 

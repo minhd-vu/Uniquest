@@ -14,4 +14,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Clarity");
     }
+
+    public void PlayCreative()
+    {
+        SceneManager.LoadScene("Creative");
+    }
 }

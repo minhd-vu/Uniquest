@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Clarity.unity
     guid: 93539c3638727454697442fcc421b0c1
+  - enabled: 1
+    path: Assets/Scenes/Creative.unity
+    guid: 11713a89ec78d494a9267d3d096c7168
   m_configObjects: {}
