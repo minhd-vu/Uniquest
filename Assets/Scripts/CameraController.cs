@@ -20,22 +20,30 @@ public class CameraController : MonoBehaviour
     private float velocityFOV;
     private float targetFOV;
 
-    private Vector3 velocityCamera;
-    private Transform targetCamera;
-
     private bool playerView;
     private float vertical;
 
     void Start()
     {
         targetFOV = planetCamera.fieldOfView;
-        targetCamera = planetCamera.transform;
-        velocityCamera = Vector3.zero;
         playerView = false;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        ToggleCamera();
+        MovePlanetCamera();
+        MovePlayerCamera();
+    }
+
+    void LateUpdate()
+    {
+        planetCamera.fieldOfView = Mathf.SmoothDamp(planetCamera.fieldOfView, targetFOV, ref velocityFOV, zoomTime);
+        //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+    }
+
+    private void ToggleCamera()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -53,37 +61,32 @@ public class CameraController : MonoBehaviour
                 planetCamera.enabled = true;
             }
         }
+    }
 
+    private void MovePlanetCamera()
+    {
         if (!playerView)
         {
             if (Input.GetMouseButton(1))
             {
-                targetCamera.RotateAround(planet.position, targetCamera.transform.up, Input.GetAxis("Mouse X") * speed);
-                targetCamera.RotateAround(planet.position, targetCamera.transform.right, Input.GetAxis("Mouse Y") * -speed);
-
-                //planetCamera.transform.RotateAround(planet.position, planetCamera.transform.up, Input.GetAxis("Mouse X") * speed);
-                //planetCamera.transform.RotateAround(planet.position, planetCamera.transform.right, Input.GetAxis("Mouse Y") * -speed);
+                planetCamera.transform.RotateAround(planet.position, planetCamera.transform.up, Input.GetAxis("Mouse X") * speed);
+                planetCamera.transform.RotateAround(planet.position, planetCamera.transform.right, Input.GetAxis("Mouse Y") * -speed);
             }
 
 
             targetFOV -= Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
             targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
         }
+    }
 
-        else
+    private void MovePlayerCamera()
+    {
+        if (playerView)
         {
             player.Rotate(Vector3.up * Input.GetAxis("Mouse X") * Time.deltaTime * mouseSensitivity);
             vertical += Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSensitivity;
             vertical = Mathf.Clamp(vertical, -60, 60);
             playerCamera.transform.localEulerAngles = Vector3.left * vertical;
         }
-    }
-
-    void LateUpdate()
-    {
-        planetCamera.fieldOfView = Mathf.SmoothDamp(planetCamera.fieldOfView, targetFOV, ref velocityFOV, zoomTime);
-        planetCamera.transform.position = Vector3.SmoothDamp(planetCamera.transform.position, targetCamera.position, ref velocityCamera, 1.15f);
-        planetCamera.transform.rotation = Quaternion.Slerp(planetCamera.transform.rotation, targetCamera.rotation, 02.5f);
-        //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
     }
 }

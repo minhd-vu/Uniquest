@@ -25,9 +25,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        MovePlayer();
+        JumpPlayer();
+    }
+
+    private void MovePlayer()
+    {
         moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
         moveTarget = Vector3.SmoothDamp(moveTarget, moveDirection * moveSpeed, ref velocity, 0.1f);
+    }
 
+    private void JumpPlayer()
+    {
         if (Input.GetButtonDown("Jump") && onGround)
         {
             rb.AddForce(rb.transform.up * jumpForce);
