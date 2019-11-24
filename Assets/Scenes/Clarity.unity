@@ -607,6 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  cam: {fileID: 963194228}
 --- !u!114 &1909914240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 2791356577857929651, guid: 26d66f9f0d8982448b48e9a428e3e180,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4103576024473757859, guid: 26d66f9f0d8982448b48e9a428e3e180,
         type: 3}

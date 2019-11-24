@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public Transform cam;
+
     private Vector3 moveDirection;
     private Rigidbody rb;
 

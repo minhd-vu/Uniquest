@@ -14,29 +14,27 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float sensitivity;
     [SerializeField] private float zoomTime;
 
+    private float playerHeight = 5f;
+    private float playerAngle = 45f;
+
     private float velocity;
     private float targetFOV;
-    private bool selectedTarget;
+    private bool playerView;
 
     void Start()
     {
         targetFOV = cam.fieldOfView;
         velocity = 0f;
-        selectedTarget = false;
+        playerView = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            selectedTarget = !selectedTarget;
-        }
-
         if (Input.GetMouseButton(1))
         {
-            cam.transform.RotateAround(target.transform.position, cam.transform.up, Input.GetAxis("Mouse X") * speed);
-            cam.transform.RotateAround(target.transform.position, cam.transform.right, Input.GetAxis("Mouse Y") * -speed);
+            cam.transform.RotateAround(target.position, cam.transform.up, Input.GetAxis("Mouse X") * speed);
+            cam.transform.RotateAround(target.position, cam.transform.right, Input.GetAxis("Mouse Y") * -speed);
         }
 
         targetFOV -= Input.GetAxis("Mouse ScrollWheel") * sensitivity;
