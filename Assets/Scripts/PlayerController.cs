@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            GameObject obj = Instantiate(tree, rb.position + rb.transform.forward * 1f, rb.rotation);
+            GameObject obj = Instantiate(tree, rb.position + rb.transform.up * 2f, rb.rotation);
             obj.GetComponent<FauxGravityBody>().attractor = attractor;
         }
     }
