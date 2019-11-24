@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public Transform cam;
     public float jumpForce;
+    public GameObject tree;
+    public FauxGravityAttractor attractor;
 
     private Vector3 moveDirection;
     private Rigidbody rb;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer();
         JumpPlayer();
+        ConstructTree();
     }
 
     private void MovePlayer()
@@ -50,6 +53,15 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, .3f, groundMask))
         {
             onGround = true;
+        }
+    }
+
+    private void ConstructTree()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            GameObject obj = Instantiate(tree, rb.position + rb.transform.forward * 1f, rb.rotation);
+            obj.GetComponent<FauxGravityBody>().attractor = attractor;
         }
     }
 
