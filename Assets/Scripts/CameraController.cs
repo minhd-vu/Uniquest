@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private float minFOV;
     [SerializeField] private float maxFOV;
-    [SerializeField] private float zoomSensitivity;
+    [SerializeField] private float sensitivity;
     [SerializeField] private float zoomTime;
 
     private float velocity;
@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
             cam.transform.RotateAround(target.transform.position, cam.transform.right, Input.GetAxis("Mouse Y") * -speed);
         }
 
-        targetFOV -= Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
+        targetFOV -= Input.GetAxis("Mouse ScrollWheel") * sensitivity;
         targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
     }
 

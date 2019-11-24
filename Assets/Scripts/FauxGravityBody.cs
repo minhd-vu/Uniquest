@@ -5,12 +5,14 @@ using UnityEngine;
 public class FauxGravityBody : MonoBehaviour
 {
     public FauxGravityAttractor attractor;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        GetComponent<Rigidbody>().useGravity = false;
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.useGravity = false;
     }
 
     // Update is called once per frame
