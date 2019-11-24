@@ -51,12 +51,16 @@ public class CameraController : MonoBehaviour
 
             if (playerView)
             {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 playerCamera.enabled = true;
                 planetCamera.enabled = false;
             }
 
             else
             {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 playerCamera.enabled = false;
                 planetCamera.enabled = true;
             }
