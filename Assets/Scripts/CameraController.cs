@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Camera cam;
-    [SerializeField] private Transform player;
     [SerializeField] private Transform target;
     [SerializeField] private float speed;
 
@@ -14,18 +13,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float sensitivity;
     [SerializeField] private float zoomTime;
 
-    private float playerHeight = 5f;
-    private float playerAngle = 45f;
-
     private float velocity;
     private float targetFOV;
-    private bool playerView;
 
     void Start()
     {
         targetFOV = cam.fieldOfView;
         velocity = 0f;
-        playerView = false;
     }
 
     // Update is called once per frame
