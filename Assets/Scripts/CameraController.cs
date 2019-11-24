@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     private Vector3 previousPosition;
     private float depth;
     private float velocity;
+    private Vector3 velo;
     private float targetFOV;
 
     void Start()
@@ -32,19 +33,25 @@ public class CameraController : MonoBehaviour
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
         }
 
-        
+
         // Set the direction depending on whether the player is clicking or not.
         Vector3 direction = Input.GetMouseButton(0) ?
             (previousPosition - cam.ScreenToViewportPoint(Input.mousePosition)) * 180 :
-            new Vector3(Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime, Input.GetAxisRaw("Vertical") * speed * Time.deltaTime, 0);
+            //new Vector3(Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime, Input.GetAxisRaw("Vertical") * speed * Time.deltaTime, 0);
+            Vector3.zero;
 
         // Rotate the camera around the planet.
         cam.transform.position = target.position;
         cam.transform.Rotate(Vector3.right, direction.y);
-        cam.transform.Rotate(Vector3.up, -direction.x, Space.World);
+        cam.transform.Rotate(Vector3.up, -direction.x * -Vector3.Dot(cam.transform.up, Vector3.down));
         cam.transform.Translate(Vector3.forward * depth);
         previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
-        
+
+        //Transform tf = cam.transform;
+        //tf.position = target.position;
+        //tf.Rotate
+
+
 
         /*
         if (Input.GetMouseButton(0))
