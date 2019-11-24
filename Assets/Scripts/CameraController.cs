@@ -15,17 +15,22 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zoomSensitivity;
     [SerializeField] private float zoomTime;
 
-    [SerializeField] private float mouseSensitivity;
+    public float mouseSensitivity;
 
-    private float velocity;
+    private float velocityFOV;
     private float targetFOV;
+
+    private Vector3 velocityCamera;
+    private Transform targetCamera;
+
     private bool playerView;
     private float vertical;
 
     void Start()
     {
         targetFOV = planetCamera.fieldOfView;
-        velocity = 0f;
+        targetCamera = planetCamera.transform;
+        velocityCamera = Vector3.zero;
         playerView = false;
     }
 
@@ -53,9 +58,13 @@ public class CameraController : MonoBehaviour
         {
             if (Input.GetMouseButton(1))
             {
-                planetCamera.transform.RotateAround(planet.position, planetCamera.transform.up, Input.GetAxis("Mouse X") * speed);
-                planetCamera.transform.RotateAround(planet.position, planetCamera.transform.right, Input.GetAxis("Mouse Y") * -speed);
+                targetCamera.RotateAround(planet.position, targetCamera.transform.up, Input.GetAxis("Mouse X") * speed);
+                targetCamera.RotateAround(planet.position, targetCamera.transform.right, Input.GetAxis("Mouse Y") * -speed);
+
+                //planetCamera.transform.RotateAround(planet.position, planetCamera.transform.up, Input.GetAxis("Mouse X") * speed);
+                //planetCamera.transform.RotateAround(planet.position, planetCamera.transform.right, Input.GetAxis("Mouse Y") * -speed);
             }
+
 
             targetFOV -= Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
             targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
@@ -72,7 +81,9 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        planetCamera.fieldOfView = Mathf.SmoothDamp(planetCamera.fieldOfView, targetFOV, ref velocity, zoomTime);
+        planetCamera.fieldOfView = Mathf.SmoothDamp(planetCamera.fieldOfView, targetFOV, ref velocityFOV, zoomTime);
+        planetCamera.transform.position = Vector3.SmoothDamp(planetCamera.transform.position, targetCamera.position, ref velocityCamera, 1.15f);
+        planetCamera.transform.rotation = Quaternion.Slerp(planetCamera.transform.rotation, targetCamera.rotation, 02.5f);
         //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
     }
 }
