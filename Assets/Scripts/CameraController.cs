@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Camera planetCamera;
-    [SerializeField] private Camera playerCamera;
-    [SerializeField] private Transform planet;
-    [SerializeField] private Transform player;
-    [SerializeField] private float speed;
+    [SerializeField] private Camera planetCamera = null;
+    [SerializeField] private Camera playerCamera = null;
+    [SerializeField] private Transform planet = null;
+    [SerializeField] private Transform player = null;
+    [SerializeField] private float speed = 5f;
 
-    [SerializeField] private float minFOV;
-    [SerializeField] private float maxFOV;
-    [SerializeField] private float zoomSensitivity;
-    [SerializeField] private float zoomTime;
+    [SerializeField] private float minFOV = 30f;
+    [SerializeField] private float maxFOV = 90f;
+    [SerializeField] private float zoomSensitivity = 30f;
+    [SerializeField] private float zoomTime = 0.2f;
 
     public float mouseSensitivity;
 
