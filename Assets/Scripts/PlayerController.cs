@@ -56,7 +56,8 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject obj = Instantiate(selected, hit.point + hit.transform.forward * dropHeight, Quaternion.identity);
+                GameObject obj = Instantiate(selected, hit.point, Quaternion.identity);
+                obj.transform.Translate(obj.transform.position + obj.transform.up * dropHeight);
                 obj.transform.Rotate(Vector3.forward * Random.Range(0f, 360f));
                 obj.GetComponent<FauxGravityBody>().attractor = planet.GetComponent<FauxGravityAttractor>();
             }
