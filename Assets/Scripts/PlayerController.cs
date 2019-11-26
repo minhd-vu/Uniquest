@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float zoomSensitivity = 30f;
     [SerializeField] private float zoomTime = 0.2f;
     [SerializeField] private float mouseSensitivity = 5f;
+    [SerializeField] private float dropHeight = 1f;
 
     private float velocityFOV;
     private float targetFOV;
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject obj = Instantiate(selected, hit.point, Quaternion.identity);
+                GameObject obj = Instantiate(selected, hit.point + hit.transform.forward * dropHeight, Quaternion.identity);
                 obj.transform.Rotate(Vector3.forward * Random.Range(0f, 360f));
                 obj.GetComponent<FauxGravityBody>().attractor = planet.GetComponent<FauxGravityAttractor>();
             }

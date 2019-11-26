@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 975244661}
-  speed: 3
+  speed: 7
 --- !u!108 &1324191241
 Light:
   m_ObjectHideFlags: 0
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 975244661}
-  speed: 1
+  speed: 3
 --- !u!108 &1503602430
 Light:
   m_ObjectHideFlags: 0
