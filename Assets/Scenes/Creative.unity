@@ -810,5 +810,10 @@ PrefabInstance:
       propertyPath: planet
       value: 
       objectReference: {fileID: 975244662}
+    - target: {fileID: 6667806803143542654, guid: 169474385dd285f449bf1a9def3cd1e8,
+        type: 3}
+      propertyPath: mouseSensitivity
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 169474385dd285f449bf1a9def3cd1e8, type: 3}

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxFOV = 90f;
     [SerializeField] private float zoomSensitivity = 30f;
     [SerializeField] private float zoomTime = 0.2f;
-    [SerializeField] private float mouseSensitivity = 5f;
+    [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField] private float dropHeight = 1f;
 
     private float velocityFOV;
@@ -38,13 +38,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            cam.transform.RotateAround(planet.transform.position, cam.transform.up, Input.GetAxis("Mouse X") * mouseSensitivity);
-            cam.transform.RotateAround(planet.transform.position, cam.transform.right, Input.GetAxis("Mouse Y") * -mouseSensitivity);
+            cam.transform.RotateAround(planet.transform.position, cam.transform.up, Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime);
+            cam.transform.RotateAround(planet.transform.position, cam.transform.right, Input.GetAxis("Mouse Y") * -mouseSensitivity * Time.deltaTime);
         }
 
         targetFOV -= Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
         targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
-
     }
 
     private void BuildSelected()
