@@ -4,63 +4,50 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
-    public float jumpForce;
-    public GameObject tree;
+    [SerializeField] private Camera cam = null;
+    [SerializeField] private GameObject planet = null;
+    [SerializeField] private GameObject selected;
+    [SerializeField] private float minFOV = 30f;
+    [SerializeField] private float maxFOV = 90f;
+    [SerializeField] private float zoomSensitivity = 30f;
+    [SerializeField] private float zoomTime = 0.2f;
+    [SerializeField] private float mouseSensitivity = 5f;
 
-    private FauxGravityBody body;
-    private Vector3 moveDirection;
-    private Rigidbody rb;
-    private Vector3 velocity;
-    private Vector3 moveTarget;
+    private float velocityFOV;
+    private float targetFOV;
 
-    public LayerMask groundMask;
-    private bool onGround;
-
-    public float distance;
-
-    // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<FauxGravityBody>();
-        rb = GetComponent<Rigidbody>();
-        onGround = true;
+        targetFOV = cam.fieldOfView;
     }
 
+    // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-        JumpPlayer();
-        ConstructTree();
+        MoveCamera();
+        BuildSelected();
     }
 
-    private void MovePlayer()
+    void LateUpdate()
     {
-        moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-        moveTarget = Vector3.SmoothDamp(moveTarget, moveDirection * moveSpeed, ref velocity, 0.1f);
+        cam.fieldOfView = Mathf.SmoothDamp(cam.fieldOfView, targetFOV, ref velocityFOV, zoomTime);
     }
 
-    private void JumpPlayer()
+    private void MoveCamera()
     {
-        if (Input.GetButtonDown("Jump") && onGround)
+        if (Input.GetMouseButton(1))
         {
-            rb.AddForce(rb.transform.up * jumpForce);
+            cam.transform.RotateAround(planet.transform.position, cam.transform.up, Input.GetAxis("Mouse X") * mouseSensitivity);
+            cam.transform.RotateAround(planet.transform.position, cam.transform.right, Input.GetAxis("Mouse Y") * -mouseSensitivity);
         }
 
-        onGround = false;
+        targetFOV -= Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
+        targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
 
-        Ray ray = new Ray(rb.transform.position, -rb.transform.up);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, .3f, groundMask))
-        {
-            onGround = true;
-        }
     }
 
-    private void ConstructTree()
+    private void BuildSelected()
     {
-        //if (Input.GetKeyDown(KeyCode.B))
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -68,18 +55,10 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject obj = Instantiate(tree, hit.point, Quaternion.identity);
+                GameObject obj = Instantiate(selected, hit.point, Quaternion.identity);
                 obj.transform.Rotate(Vector3.forward * Random.Range(0f, 360f));
-                obj.GetComponent<FauxGravityBody>().attractor = body.attractor;
+                obj.GetComponent<FauxGravityBody>().attractor = planet.GetComponent<FauxGravityAttractor>();
             }
-
-            //GameObject obj = Instantiate(tree, rb.position + rb.transform.up * 2f, rb.rotation);
-            //obj.GetComponent<FauxGravityBody>().attractor = body.attractor;
         }
-    }
-
-    void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + transform.TransformDirection(moveTarget) * Time.fixedDeltaTime);
     }
 }
