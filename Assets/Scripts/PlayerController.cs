@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     private bool onGround;
 
+    public float distance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,10 +60,21 @@ public class PlayerController : MonoBehaviour
 
     private void ConstructTree()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        //if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetMouseButtonDown(0))
         {
-            GameObject obj = Instantiate(tree, rb.position + rb.transform.up * 2f, rb.rotation);
-            obj.GetComponent<FauxGravityBody>().attractor = body.attractor;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                GameObject obj = Instantiate(tree, hit.point, Quaternion.identity);
+                obj.transform.Rotate(Vector3.forward * Random.Range(0f, 360f));
+                obj.GetComponent<FauxGravityBody>().attractor = body.attractor;
+            }
+
+            //GameObject obj = Instantiate(tree, rb.position + rb.transform.up * 2f, rb.rotation);
+            //obj.GetComponent<FauxGravityBody>().attractor = body.attractor;
         }
     }
 

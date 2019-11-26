@@ -120,12 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!20 &582757148 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 6456319946387890294, guid: 169474385dd285f449bf1a9def3cd1e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 6456319946946513770}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &963194227 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4891697186714547987, guid: 8fb95d6a489d7024282cf1ab5a368078,
@@ -275,7 +269,7 @@ GameObject:
   - component: {fileID: 1324191241}
   - component: {fileID: 1324191240}
   m_Layer: 0
-  m_Name: Sun (1)
+  m_Name: Blue Sun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,12 +469,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1909914238 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6456319945634672916, guid: 169474385dd285f449bf1a9def3cd1e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 6456319946946513770}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1955728435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -770,7 +758,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerCamera
       value: 
-      objectReference: {fileID: 582757148}
+      objectReference: {fileID: 0}
     - target: {fileID: 4621915016130205660, guid: 4425b9366c4dbc74894a54b381b6aceb,
         type: 3}
       propertyPath: planet
@@ -780,7 +768,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1909914238}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4425b9366c4dbc74894a54b381b6aceb, type: 3}
 --- !u!1001 &4891697187396573792
@@ -864,6 +852,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6456319946387890294, guid: 169474385dd285f449bf1a9def3cd1e8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6456319945634672916, guid: 169474385dd285f449bf1a9def3cd1e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -924,6 +917,11 @@ PrefabInstance:
       propertyPath: attractor
       value: 
       objectReference: {fileID: 975244664}
+    - target: {fileID: 6456319945634673130, guid: 169474385dd285f449bf1a9def3cd1e8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6456319945634672917, guid: 169474385dd285f449bf1a9def3cd1e8,
         type: 3}
       propertyPath: cam
@@ -934,7 +932,17 @@ PrefabInstance:
       propertyPath: attractor
       value: 
       objectReference: {fileID: 975244666}
-    - target: {fileID: 6456319946387890294, guid: 169474385dd285f449bf1a9def3cd1e8,
+    - target: {fileID: 6456319945634672917, guid: 169474385dd285f449bf1a9def3cd1e8,
+        type: 3}
+      propertyPath: distance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6456319945634672918, guid: 169474385dd285f449bf1a9def3cd1e8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6456319945634672913, guid: 169474385dd285f449bf1a9def3cd1e8,
         type: 3}
       propertyPath: m_Enabled
       value: 0
