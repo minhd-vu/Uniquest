@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Camera cam = null;
     [SerializeField] private GameObject planet = null;
-    [SerializeField] private GameObject selected;
+    [SerializeField] private GameObject selected = null;
     [SerializeField] private float minFOV = 30f;
     [SerializeField] private float maxFOV = 90f;
     [SerializeField] private float zoomSensitivity = 30f;
