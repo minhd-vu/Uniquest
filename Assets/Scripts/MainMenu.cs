@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    void Start()
+    {
+        AudioManager.instance.PlayLoop("Title Screen");
+    }
+
     public void PlayMystery()
     {
         SceneManager.LoadScene("Mystery");
