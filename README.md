@@ -14,3 +14,5 @@
 
 # Screenshots
 
+![clarity](docs/images/clairty.png?raw=true "Clarity")
+![myster](docs/images/mystery.png?raw=true "Mystery")
